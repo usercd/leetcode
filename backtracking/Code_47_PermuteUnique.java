@@ -1,4 +1,8 @@
-public class 47_PermuteUnique {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Code_47_PermuteUnique {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);

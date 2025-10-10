@@ -1,4 +1,7 @@
-public class 46_Permute {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Code_46_Permute {
 
     public List<List<Integer>> permute(int[] nums) {
         if (nums.length == 0) {

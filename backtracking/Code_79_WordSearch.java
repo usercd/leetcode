@@ -1,4 +1,4 @@
-public class 79_WordSearch {
+public class Code_79_WordSearch {
 
     public boolean exist(char[][] board, String word) {
         int rows = board.length;
