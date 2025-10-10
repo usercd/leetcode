@@ -1,3 +1,5 @@
+package backtracking;
+
 public class Code_79_WordSearch {
 
     public boolean exist(char[][] board, String word) {
