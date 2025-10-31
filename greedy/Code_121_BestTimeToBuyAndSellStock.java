@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package greedy;
 
 public class Code_121_BestTimeToBuyAndSellStock {
     public int maxProfit(int[] prices) {

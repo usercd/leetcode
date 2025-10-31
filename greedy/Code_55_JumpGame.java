@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package greedy;
 
 public class Code_55_JumpGame {
     public boolean canJump(int[] nums) {
