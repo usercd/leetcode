@@ -1,4 +1,4 @@
-package twopointers;
+package binary_search;
 
 public class Code_35_SearchInsertPosition {
     public int searchInsert(int[] nums, int target) {

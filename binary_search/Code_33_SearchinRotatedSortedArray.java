@@ -1,4 +1,4 @@
-package twopointers;
+package binary_search;
 
 public class Code_33_SearchinRotatedSortedArray {
     public int search(int[] nums, int target) {

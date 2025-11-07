@@ -1,4 +1,4 @@
-package twopointers;
+package binary_search;
 
 public class Code_74_Searcha2DMatrix {
     public boolean searchMatrix(int[][] matrix, int target) {
