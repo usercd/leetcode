@@ -3,6 +3,20 @@ package tree;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 208. Implement Trie (Prefix Tree)
+ * 题目大意：
+ * 实现一个前缀树（Trie），包含 insert, search, 和 startsWith 这三个操作。
+ * 
+ * 解题思路：
+ * 使用一个嵌套的 TrieNode 类来表示前缀树的节点。每个节点包含一个子节点数组和一个标志位表示是否为单词的结尾。
+ * insert 方法用于插入单词，search 方法用于搜索完整单词，startsWith 方法用于检查是否存在以给定前缀开头的单词。
+ * 
+ * 复杂度分析：
+ * 时间复杂度：O(m)，其中 m 是单词的长度。每个操作都需要遍历单词的每个字符一次。
+ * 空间复杂度：O(m)，在最坏情况下，前缀树需要存储所有插入的单词，每个字符都需要一个节点。
+ */
+
 public class Code_208_PrefixTree {
     class TrieNode {
         TrieNode[] children;
