@@ -1,5 +1,19 @@
 package basic;
 
+/**
+ * LeetCode 53. 最大子数组和
+ * 
+ * 题目描述：
+ * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+ * 
+ * 解题思路：
+ * 使用动态规划的方法，遍历数组时维护当前子数组的和，如果当前和为负数则重新开始计算子数组和。
+ * 同时更新最大子数组和。
+ * 
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ */
+
 public class Code_53_MaximumSubarray {
     public int maxSubArray(int[] nums) {
         int n = nums.length;

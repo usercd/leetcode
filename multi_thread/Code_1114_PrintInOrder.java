@@ -6,6 +6,28 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * LeetCode 1114. 按序打印
+ * 
+ * 题目描述：
+ * 我们提供了一个类：
+ * public class Foo {
+ *   public void first() { print("first"); }
+ *   public void second() { print("second"); }
+ *   public void third() { print("third"); }
+ * }
+ * 三个不同的线程 A、B 和 C 将会共用一个 Foo 实例。
+ * 线程 A 将会调用 first() 方法，线程 B 将会调用 second() 方法，线程 C 将会调用 third() 方法。
+ * 请设计修改程序，以确保 second() 方法在 first() 方法之后被执行，third() 方法在 second() 方法之后被执行。
+ * 
+ * 解题思路：
+ * 提供多种同步机制的实现方式，包括使用 volatile 变量、信号量（Semaphore）、锁和条件变量（Lock 和 Condition）、CountDownLatch 以及 synchronized + wait + notifyAll。
+ * 每种方法都确保了方法调用的顺序性。
+ * 
+ * 时间复杂度：O(1) 每个方法的时间复杂度为常数时间
+ * 空间复杂度：O(1) 使用的额外空间为常数空间
+ */
+
 public class Code_1114_PrintInOrder {
     // 使用volatile变量作为标志位
     class Foo {

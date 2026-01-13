@@ -1,4 +1,19 @@
 package linkedlist;
+
+/**
+ * LeetCode 234. 回文链表
+ * 
+ * 题目描述：
+ * 给定一个单链表的头节点 head，判断该链表是否为回文链表。
+ * 
+ * 解题思路：
+ * 使用快慢指针找到链表的中点，同时反转前半部分链表。
+ * 然后比较反转后的前半部分和后半部分是否相同。
+ * 
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ */
+
 public class Code_234_PalindromeLinkedList {
     
     class ListNode {

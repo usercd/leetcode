@@ -1,5 +1,22 @@
 package binary_search;
 
+/**
+ * LeetCode 34. 在排序数组中查找元素的第一个和最后一个位置
+ * 
+ * 题目描述：
+ * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。
+ * 找出给定目标值在数组中的开始位置和结束位置。
+ * 如果数组中不存在目标值 target，返回 [-1, -1]。
+ * 
+ * 解题思路：
+ * 使用二分查找的方法分别查找目标值的左边界和右边界。
+ * 查找左边界时，当 mid 位置的值大于等于 target 时，收缩右边界；
+ * 查找右边界时，当 mid 位置的值小于等于 target 时，收缩左边界。
+ * 
+ * 时间复杂度：O(log n)
+ * 空间复杂度：O(1)
+ */
+
 public class Code_34_FindFirstAndLastPositionOfElementinSortedArray {
     public int[] searchRange(int[] nums, int target) {
         int[] result = new int[]{-1, -1};

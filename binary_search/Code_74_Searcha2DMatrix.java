@@ -1,5 +1,21 @@
 package binary_search;
 
+/**
+ * LeetCode 74. 搜索二维矩阵
+ * 
+ * 题目描述：
+ * 编写一个高效的算法来判断 m x n 矩阵中是否存在一个目标值。该矩阵具有以下特性：
+ * 每行中的整数从左到右按升序排列。
+ * 每行的第一个整数大于前一行的最后一个整数。
+ * 
+ * 解题思路：
+ * 方法一：将二维矩阵视为一维有序数组，使用二分查找的方法进行搜索。
+ * 方法二：逐行检查目标值是否在该行范围内，如果在则对该行进行二分查找。
+ * 
+ * 时间复杂度：O(log(mn)) 或 O(m log n)
+ * 空间复杂度：O(1)
+ */
+
 public class Code_74_Searcha2DMatrix {
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {

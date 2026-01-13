@@ -3,6 +3,31 @@ package multi_thread;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
+/**
+ * LeetCode 1116. 打印零与奇偶数
+ * 
+ * 题目描述：
+ * 假设有这样一个类：
+ * public class ZeroEvenOdd {
+ *   public ZeroEvenOdd(int n) { ... }      // 构造函数
+ *   public void zero(printNumber) { ... }  // 仅打印出 0
+ *   public void even(printNumber) { ... }  // 仅打印出 偶数
+ *   public void odd(printNumber) { ... }   // 仅打印出 奇数
+ * }
+ * 三个不同的线程将会共用一个 ZeroEvenOdd 实例。
+ * - 线程 A 将调用 zero()，它只输出 0 。
+ * - 线程 B 将调用 even()，它只输出偶数。
+ * - 线程 C 将调用 odd()，它只输出奇数。
+ * 请设计修改程序，以确保输出的顺序为 "0102030405..."，其中 "0" 总是出现在奇数和偶数之前。
+ * 
+ * 解题思路：
+ * 提供多种同步机制的实现方式，包括使用 synchronized + wait + notifyAll、信号量（Semaphore）、CountDownLatch。
+ * 每种方法都确保了按要求的顺序打印数字。
+ * 
+ * 时间复杂度：O(n) 每个方法的时间复杂度为 O(n)
+ * 空间复杂度：O(1) 使用的额外空间为常数空间
+ */
+
 public class Code_1116_PrintZeroEvenOdd {
 
     class PrintZeroEvenOddSynchronized {

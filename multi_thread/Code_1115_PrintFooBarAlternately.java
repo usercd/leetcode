@@ -9,6 +9,21 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.LockSupport;
 
+/**
+ * LeetCode 1115. 交替打印 FooBar
+ * 
+ * 题目描述：
+ * 有两个线程 A 和 B 交替打印字符串 "foo" 和 "bar" n 次。
+ * 请设计一个类，使得两个线程可以交替输出 "foobar" n 次。
+ * 
+ * 解题思路：
+ * 提供多种同步机制的实现方式，包括使用 Thread.yield()、synchronized + wait/notify、ReentrantLock + Condition、Semaphore、CyclicBarrier、BlockingQueue 以及 LockSupport。
+ * 每种方法都确保了 foo 和 bar 方法的交替执行。
+ * 
+ * 时间复杂度：O(n) 每个方法的时间复杂度为线性时间
+ * 空间复杂度：O(1) 使用的额外空间为常数空间
+ */
+
 public class Code_1115_PrintFooBarAlternately {
     
     // Thread.yield()
