@@ -95,9 +95,11 @@ public class Code_42_TrappingRainWater {
     public int trap3(int[] height) {
         int n = height.length;
         int waterTrapped = 0;
+        // 使用栈存储柱子的索引
         Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < n; i++) {
+            // 当遇到比栈顶元素高的柱子时，计算能接的雨水量
             while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
                 int top = stack.pop();
                 if (stack.isEmpty()) {
@@ -111,5 +113,14 @@ public class Code_42_TrappingRainWater {
         }
 
         return waterTrapped;
+    }
+
+
+    public static void main(String[] args) {
+        Code_42_TrappingRainWater solution = new Code_42_TrappingRainWater();
+        int[] height = {1, 0, 1};
+        System.out.println("双指针法接雨水量: " + solution.trap1(height)); // 输出: 6
+        System.out.println("动态规划法接雨水量: " + solution.trap2(height)); // 输出: 6
+        System.out.println("单调栈法接雨水量: " + solution.trap3(height)); // 输出: 6
     }
 }

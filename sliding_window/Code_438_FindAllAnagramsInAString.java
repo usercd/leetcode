@@ -56,4 +56,41 @@ public class Code_438_FindAllAnagramsInAString {
 
         return result;
     }
+
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        if (s == null || s.length() < p.length()) return result;
+
+        int[] freq = new int[256];
+        for (char c : p.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        int left = 0, right = 0, count = p.length();
+
+        while (right < s.length()) {
+            int indexOfRight = s.charAt(right) - 'a';
+            // 当前字母是P中的字母
+            if (freq[indexOfRight] > 0) {
+                count--;
+            }
+            freq[indexOfRight]--;
+            right++;
+
+            if (count == 0) {
+                result.add(left);
+            }
+
+            if (right - left == p.length()) {
+                int indexOfLeft = s.charAt(left) - 'a';
+                if (freq[indexOfLeft] >= 0) {
+                    count++;
+                }
+                freq[indexOfLeft]++;
+                left++;
+            }
+        }
+
+        return result;
+    }
 }
