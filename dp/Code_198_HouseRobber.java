@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+
 /**
  * LeetCode 198. 打家劫舍
  * 
@@ -24,27 +26,68 @@ package dp;
  * 空间复杂度：O(1)
  */
 public class Code_198_HouseRobber {
-    public int rob(int[] nums) {
-        // 边界条件处理
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
+
+    // 递归 + 记忆化搜索
+    public int rob0(int[] nums) {
+        int[] arr = new int[nums.length];
+        Arrays.fill(arr, -1);
+        return dfs(nums.length - 1, nums, arr);
+    }
+
+    private int dfs(int n, int[] nums, int[] arr) {
+        if (n < 0) return 0;
+        if (arr[n] != -1) return arr[n];
+        int res = Math.max(dfs(n - 2, nums, arr) + nums[n], dfs(n - 1, nums, arr));
+        arr[n] = res;
+        return res;
+    }
+
+    // 递推
+    public int rob1(int[] nums) {
         int n = nums.length;
-        if (n == 1) {
-            return nums[0];
+        if (nums == null || n == 0) return 0;
+        if (n == 1) return nums[0];
+        // arr[i] 表示偷窃前 i-1 个房屋能获得的最大金额
+        int[] arr = new int[n+2];
+        // 从第 2 个房屋开始遍历
+        for (int i = 0; i < n; i++) {
+            arr[i+2] = Math.max(arr[i] + nums[i], arr[i+1]);
         }
+
+        return arr[n+1];
+    }
+
+    public int rob2(int[] nums) {
+        // 边界条件处理
+        int n = nums.length;
+        if (nums == null || n == 0) return 0;
+        if (n == 1) return nums[0];
         
         // first 表示 dp[i-2]，second 表示 dp[i-1]
         int first = nums[0];  // 只偷第 0 个房屋
         int second = Math.max(nums[0], nums[1]);  // 偷前两个房屋的最大值
         
-        // 从第 2 个房屋开始遍历
         for (int i = 2; i < n; i++) {
             // current 表示 dp[i]
-            // 选择偷或不偷第 i 个房屋中的最大值
             int current = Math.max(first + nums[i], second);
             
             // 滚动更新：为下一轮做准备
+            first = second;
+            second = current;
+        }
+        
+        return second;
+    }
+
+    public int rob3(int[] nums) {
+        int n = nums.length;
+        if (nums == null || n == 0) return 0;
+        if (n == 1) return nums[0];
+        
+        int first = 0, second = 0;
+        
+        for (int i = 0; i < n; i++) {
+            int current = Math.max(first + nums[i], second);
             first = second;
             second = current;
         }

@@ -53,11 +53,4 @@ class Code_131_PalindromePartitioning {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        Code_131_PalindromePartitioning solver = new Code_131_PalindromePartitioning();
-        String s = "aab";
-        List<List<String>> partitions = solver.partition(s);
-        System.out.println(partitions); // Output: [["a","a","b"],["aa","b"]]
-    }
 }

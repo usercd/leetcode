@@ -71,10 +71,4 @@ public class Code_51_NQueues {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        Code_51_NQueues solver = new Code_51_NQueues();
-        List<List<String>> result = solver.solveNQueens(4);
-        System.out.println(result);
-        System.out.println("Total solutions: " + result.size());
-    }
 }
