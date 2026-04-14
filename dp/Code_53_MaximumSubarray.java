@@ -1,4 +1,4 @@
-package basic;
+package dp;
 
 /**
  * LeetCode 53. 最大子数组和
@@ -15,7 +15,31 @@ package basic;
  */
 
 public class Code_53_MaximumSubarray {
-    public int maxSubArray(int[] nums) {
+
+    public static int maxSubArray(int[] nums) {
+        int n = nums.length, result = nums[0];
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+            result = Math.max(result, dp[i]);
+        }
+        return result;
+    }
+
+    // 空间优化
+    public static int maxSubArray1(int[] nums) {
+        int n = nums.length, result = nums[0];
+        int last_dp = nums[0], dp = nums[0];
+        for (int i = 1; i < n; i++) {
+            dp = Math.max(nums[i], last_dp + nums[i]);
+            result = Math.max(result, dp);
+            last_dp = dp;
+        }
+        return result;
+    }
+
+    public int maxSubArray2(int[] nums) {
         int n = nums.length;
         int maxSum = nums[0];
         int currentSum = nums[0];

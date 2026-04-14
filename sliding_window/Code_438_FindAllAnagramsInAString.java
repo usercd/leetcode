@@ -57,7 +57,7 @@ public class Code_438_FindAllAnagramsInAString {
         return result;
     }
 
-    public List<Integer> findAnagrams(String s, String p) {
+    public List<Integer> findAnagrams1(String s, String p) {
         List<Integer> result = new ArrayList<>();
         if (s == null || s.length() < p.length()) return result;
 

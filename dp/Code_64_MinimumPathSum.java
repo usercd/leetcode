@@ -17,8 +17,9 @@ public class Code_64_MinimumPathSum {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
+        // dp[i][j] 表示到达位置 (i, j) 的最小路径和
         int[][] dp = new int[m][n];
-        
+        // 初始化起点
         dp[0][0] = grid[0][0];
         
         // Initialize first column
