@@ -1,7 +1,7 @@
 package dp;
 
 /**
- * LeetCode 1143. 最长公共子序列
+ * 2022年10月12日-100分-D路通信
  * 
  * 题目描述：
  * 给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列的长度。
@@ -20,7 +20,7 @@ package dp;
  * 空间复杂度：O(m*n)
  */
 
-public class Code_1143_LongestCommonSubsequence {
+public class Hw_LongestCommonSubsequence {
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length();
         int n = text2.length();
@@ -33,7 +33,6 @@ public class Code_1143_LongestCommonSubsequence {
             for (int j = 1; j <= n; j++) {
                 // 如果当前字符相等，最长公共子序列长度加 1
                 if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
-                    // 状态转移：如果当前字符相等，最长公共子序列长度加 1
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 } else {
                     // 否则，取不包含当前字符的两种情况的最大值
