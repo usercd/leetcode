@@ -29,13 +29,14 @@ public class Code_416_PartitionEqualSubsetSum {
             return false;
         }
         int target = totalSum / 2;
+        // dp[j] 表示是否存在子集，其元素和为 j
         boolean[] dp = new boolean[target + 1];
         dp[0] = true; // Base case: zero sum is always achievable
 
         for (int num : nums) {
-            // Traverse dp array in reverse order
+            // 从后往前遍历，避免覆盖之前的状态
             for (int j = target; j >= num; j--) {
-                // Update dp array in reverse to avoid using the same number multiple times
+                // 如果之前存在一个子集和为 j - num，那么加上 num 后就存在一个子集和为 j
                 dp[j] = dp[j] || dp[j - num];
             }
         }

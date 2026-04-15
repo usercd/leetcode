@@ -83,13 +83,19 @@ public class Code_32_LongestValidParentheses {
     public int longestValidParenthesesDP(String s) {
         int maxLength = 0;
         int n = s.length();
+        // dp[i] : 以i结尾的最长有效括号子串的长度
         int[] dp = new int[n];
 
         for (int i = 1; i < n; i++) {
+            // 只有当s[i]是')'时，才可能形成有效括号
             if (s.charAt(i) == ')') {
                 if (s.charAt(i - 1) == '(') {
+                    // 形如 "....()"
                     dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+                    
                 } else if (i - dp[i - 1] - 1 >= 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                    // 形如 "....))"
+                    // i - 1 - dp[i - 1] 的含义是：在i之前的最长有效括号子串的前一个字符
                     dp[i] = dp[i - 1] + 2 + (i - dp[i - 1] - 2 >= 0 ? dp[i - dp[i - 1] - 2] : 0);
                 }
                 maxLength = Math.max(maxLength, dp[i]);
