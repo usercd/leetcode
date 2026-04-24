@@ -25,9 +25,7 @@ public class Code_234_PalindromeLinkedList {
     }
 
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) {
-            return true;
-        }
+        if (head == null || head.next == null) return true;
 
         // Find middle using slow/fast pointer
         ListNode slow = head;
@@ -36,21 +34,18 @@ public class Code_234_PalindromeLinkedList {
 
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
-            ListNode next = slow.next;
+            ListNode node = slow.next;
             slow.next = prev;
             prev = slow;
-            slow = next;
+            slow = node;
         }
 
         // If odd length, skip middle element
-        ListNode second = fast == null ? slow : slow.next;
         ListNode first = prev;
+        ListNode second = fast == null ? slow : slow.next;
 
-        // Compare reversed first half with second half
         while (first != null && second != null) {
-            if (first.val != second.val) {
-                return false;
-            }
+            if (first.val != second.val) return false;
             first = first.next;
             second = second.next;
         }
