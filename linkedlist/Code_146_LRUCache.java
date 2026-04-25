@@ -1,5 +1,8 @@
 package linkedlist;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * LeetCode 146. LRU缓存机制
  * 
@@ -35,17 +38,15 @@ public class Code_146_LRUCache {
     }
 
     private final int capacity;
-    private final java.util.Map<Integer, Node> map;
+    private final Map<Integer, Node> map;
     private final Node head;
-    private final Node tail;
 
     public Code_146_LRUCache(int capacity) {
         this.capacity = capacity;
-        this.map = new java.util.HashMap<>();
+        this.map = new HashMap<>();
         this.head = new Node(0, 0); // Dummy head
-        this.tail = new Node(0, 0); // Dummy tail
-        head.next = tail;
-        tail.prev = head;
+        head.next = head;
+        head.prev = head;
     }
 
     public int get(int key) {
@@ -66,7 +67,7 @@ public class Code_146_LRUCache {
             insertAtHead(node);
         } else {
             if (map.size() == capacity) {
-                Node lru = tail.prev;
+                Node lru = head.prev;
                 remove(lru);
                 map.remove(lru.key);
             }
@@ -87,6 +88,4 @@ public class Code_146_LRUCache {
         head.next.prev = node;
         head.next = node;
     }
-
-    
 }
