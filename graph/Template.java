@@ -1,7 +1,10 @@
 package graph;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Queue;
 
 public class Template {
     
@@ -58,5 +61,37 @@ public class Template {
         }
 
         return size;
+    }
+
+    // 计算从 start 到各个节点的最短路长度
+    // 如果节点不可达，则最短路长度为 -1
+    // 节点编号从 0 到 n-1，边权均为 1
+
+    public int[] bfs(int n, int[][] edges, int start) {
+        List<List<Integer>> g = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            g.add(new ArrayList<>());
+        }
+        for (int[] e : edges) {
+            int x = e[0], y = e[1];
+            g.get(x).add(y);
+            g.get(y).add(x); // 无向图
+        }
+
+        int[] dis = new int[n];
+        Arrays.fill(dis, -1); // -1 表示尚未访问到
+        Queue<Integer> q = new ArrayDeque<>();
+        dis[start] = 0;
+        q.offer(start);
+        while (!q.isEmpty()) {
+            int x = q.poll();
+            for (int y : g.get(x)) {
+                if (dis[y] < 0) {
+                    dis[y] = dis[x] + 1;
+                    q.offer(y);
+                }
+            }
+        }
+        return dis;
     }
 }
