@@ -17,7 +17,7 @@ package linkedlist;
 
 public class Code_19_RemoveNthNodeFromEndOfList {
     
-    class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
         ListNode() {}
@@ -25,7 +25,21 @@ public class Code_19_RemoveNthNodeFromEndOfList {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    private static ListNode createList(int[] values) {
+        if (values == null || values.length == 0) return null;
+
+        ListNode head = new ListNode(values[0]);
+        ListNode current = head;
+
+        for (int i = 1; i < values.length; i++) {
+            current.next = new ListNode(values[i]);
+            current = current.next;
+        }
+
+        return head;
+    }
+
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null || n <= 0) {
             return head;
         }
@@ -55,5 +69,17 @@ public class Code_19_RemoveNthNodeFromEndOfList {
         }
 
         return dummy.next; // Return the modified list, skipping the dummy node
+    }
+
+    public static void main(String[] args) {
+        int[] values = {1, 2, 3, 4, 5};
+        ListNode head = createList(values);
+
+        ListNode res = removeNthFromEnd(head, 2);
+        while (res != null) {
+            System.out.print(res.val + " ");
+            res = res.next;
+        }
+
     }
 }
