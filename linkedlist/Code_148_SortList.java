@@ -115,9 +115,12 @@ public class Code_148_SortList {
 
             while (cur != null) {
                 ListNode left  = cur;
-                ListNode right = splitO1(left, step);
-                cur = splitO1(right, step);
-                prev = mergeO1(left, right, prev);
+                //先截取左子链表，长度为 step，返回右子链表的头节点
+                ListNode right = split1(left, step);
+                //再截取右子链表，长度为 step，返回下一段链表的头节点
+                cur = split1(right, step);
+                //合并 left 和 right 两段有序链表，合并结果接在 prev 后面，返回合并后链表的尾节点
+                prev = merge1(left, right, prev);
             }
         }
 
@@ -128,7 +131,7 @@ public class Code_148_SortList {
      * 从 head 开始保留前 n 个节点，断开后续链表，返回断开后剩余部分的头节点。
      * 例如：链表 1->2->3->4->5，n=2，操作后原链表变为 1->2->null，返回 3。
      */
-    private ListNode splitO1(ListNode head, int n) {
+    private ListNode split1(ListNode head, int n) {
         // 向后走 n-1 步，让 head 停在第 n 个节点
         while (--n > 0 && head != null) {
             head = head.next;
@@ -144,7 +147,7 @@ public class Code_148_SortList {
      * 将有序链表 l1 与 l2 合并，合并结果接在 prev 之后。
      * 返回合并后链表的尾节点，供下一次拼接使用。
      */
-    private ListNode mergeO1(ListNode l1, ListNode l2, ListNode prev) {
+    private ListNode merge1(ListNode l1, ListNode l2, ListNode prev) {
         ListNode cur = prev;
         // 逐一比较，将较小节点接到 cur 后面
         while (l1 != null && l2 != null) {
