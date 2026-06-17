@@ -26,6 +26,9 @@ public class Code_15_3Sum {
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue; // Skip duplicate values for the first number
             }
+            if (nums[i] > 0) {
+                break; // Since the array is sorted, no need to continue if the first number is greater than 0
+            }
 
             int left = i + 1;
             int right = nums.length - 1;

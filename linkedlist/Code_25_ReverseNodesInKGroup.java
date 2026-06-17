@@ -41,7 +41,6 @@ public class Code_25_ReverseNodesInKGroup {
 
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        //
         ListNode prevGroupEnd = dummy;
 
         while (true) {
