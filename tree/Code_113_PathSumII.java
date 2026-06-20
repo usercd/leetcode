@@ -24,7 +24,7 @@ import java.util.List;
 
 public class Code_113_PathSumII {
 
-    public static class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -45,30 +45,25 @@ public class Code_113_PathSumII {
 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> currentPath = new ArrayList<>();
-        dfs(root, targetSum, currentPath, result);
+        backtrack(root, targetSum, new ArrayList<>(), result);
         return result;
     }
 
-    private void dfs(TreeNode node, int remainingSum, List<Integer> currentPath, List<List<Integer>> result) {
+    private void backtrack(TreeNode node, int remainingSum, List<Integer> currentPath, List<List<Integer>> result) {
         if (node == null) {
             return;
         }
 
-        // Add the current node's value to the path
         currentPath.add(node.val);
         remainingSum -= node.val;
 
-        // Check if it's a leaf node and the remaining sum is zero
         if (node.left == null && node.right == null && remainingSum == 0) {
             result.add(new ArrayList<>(currentPath));
         } else {
-            // Continue the search on left and right subtrees
-            dfs(node.left, remainingSum, currentPath, result);
-            dfs(node.right, remainingSum, currentPath, result);
+            backtrack(node.left, remainingSum, currentPath, result);
+            backtrack(node.right, remainingSum, currentPath, result);
         }
 
-        // Backtrack: remove the last added node value
         currentPath.remove(currentPath.size() - 1);
     }
 }

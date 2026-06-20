@@ -17,7 +17,7 @@ package tree;
  */
 
 public class Code_236_LowestCommonAncestorOfABinaryTree {
-    public class TreeNode {
+    class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

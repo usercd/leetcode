@@ -40,20 +40,16 @@ public class Code_124_BinaryTreeMaximumPathSum {
 
     public int maxPathSum(TreeNode root) {
         maxSum = Integer.MIN_VALUE;
-        calculateMaxPath(root);
+        dfs(root);
         return maxSum;
     }
 
-    private int calculateMaxPath(TreeNode node) {
-        if (node == null) {
-            return 0;
-        }
+    private int dfs(TreeNode node) {
+        if (node == null) return 0;
 
-        int leftMax = Math.max(0, calculateMaxPath(node.left));
-        int rightMax = Math.max(0, calculateMaxPath(node.right));
-
-        int currentMaxPath = node.val + leftMax + rightMax;
-        maxSum = Math.max(maxSum, currentMaxPath);
+        int leftMax = Math.max(0, dfs(node.left));
+        int rightMax = Math.max(0, dfs(node.right));
+        maxSum = Math.max(maxSum, node.val + leftMax + rightMax);
 
         return node.val + Math.max(leftMax, rightMax);
     }

@@ -23,12 +23,26 @@ public class Code_226_InvertBinaryTree {
         TreeNode(int x) { val = x; }
     }
 
+    //前序遍历
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invertTree(root.left);
+        invertTree(root.right);
+        return root;
+    }
+
+    //后序遍历
+    public TreeNode invertTree1(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode left = invertTree1(root.left);
+        TreeNode right = invertTree1(root.right);
         root.left = right;
         root.right = left;
         return root;
