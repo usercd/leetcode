@@ -19,7 +19,7 @@ import java.util.Map;
  * 空间复杂度：O(n)，递归调用栈的最大深度为 O(n)。
  */
 public class Code_105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
-    public static class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -62,8 +62,10 @@ public class Code_105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
     // map优化
     public TreeNode buildTree1(int[] preorder, int[] inorder) {
         if (preorder == null || inorder == null || preorder.length == 0 || inorder.length == 0 || preorder.length != inorder.length) return null;
+        // key 为节点的值，value 为对应的中序索引
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
+            // 放入节点值和对应中序索引
             map.put(inorder[i], i);
         }
         return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1, map);
@@ -74,9 +76,11 @@ public class Code_105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
         }
 
         TreeNode root = new TreeNode(preorder[preStart]);
-        
+        // map优化体现 不用遍历得到中序的索引
         int k = map.get(preorder[preStart]);
+        // 左子树前序终点：preStart + k - 1 - inStart + 1
         root.left = build(preorder, preStart + 1, preStart + k - inStart, inorder, inStart, k - 1, map);
+        // 右子树前序起点，就是前序终点+1
         root.right = build(preorder, preStart + k - inStart + 1, preEnd, inorder, k + 1, inEnd, map);
         return root;
     }

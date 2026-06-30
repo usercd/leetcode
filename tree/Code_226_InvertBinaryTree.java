@@ -31,6 +31,7 @@ public class Code_226_InvertBinaryTree {
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
+        //左右先后顺序无关
         invertTree(root.left);
         invertTree(root.right);
         return root;
@@ -41,6 +42,7 @@ public class Code_226_InvertBinaryTree {
         if (root == null) {
             return null;
         }
+        // 左右先后顺序无关
         TreeNode left = invertTree1(root.left);
         TreeNode right = invertTree1(root.right);
         root.left = right;
