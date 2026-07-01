@@ -25,7 +25,7 @@ public class QuickSort {
         int pivot = arr[right];
         int i = left;   // 小于等于区域的右边界
 
-        // Lomuto分区方案（或称单指针分区）
+        // 单指针分区
         for (int j = left; j < right; j++) {
             if (arr[j] < pivot) {      // < pivot 的放左边
                 swap(arr, i, j);

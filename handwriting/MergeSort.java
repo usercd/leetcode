@@ -21,12 +21,12 @@ public class MergeSort {
         int[] temp = new int[n];
 
         for (int size = 1; size < n; size *= 2) {
-            //left需要小于n-size，因为size是子数组的大小，如果left超过n-size，就没有足够的元素组成一个完整的子数组了
+            // left需要小于n-size，因为size是子数组的大小，如果left超过n-size，就没有足够的元素组成一个完整的子数组了
             for (int left = 0; left < n - size; left += 2 * size) {
-                //left 移动是2倍size，因为每次合并两个size大小的子数组
-                //mid是左子数组的最后一个元素，右子数组的第一个元素是mid + 1
+                // left 移动是2倍size，因为每次合并两个size大小的子数组
+                // mid是左子数组的最后一个元素，右子数组的第一个元素是mid + 1
                 int mid = left + size - 1;
-                //right是右子数组的最后一个元素，可能会越界，所以需要取min
+                // right是右子数组的最后一个元素，可能会越界，所以需要取min
                 int right = Math.min(left + 2 * size - 1, n - 1);
                 merge(arr, left, mid, right, temp);
             }

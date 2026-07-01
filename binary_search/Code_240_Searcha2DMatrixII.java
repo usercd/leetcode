@@ -1,4 +1,4 @@
-package two_pointers;
+package binary_search;
 
 /**
  * LeetCode 240. Search a 2D Matrix II

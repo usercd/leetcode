@@ -1,4 +1,4 @@
-package basic;
+package two_pointers;
 
 import java.util.ArrayList;
 import java.util.List;
