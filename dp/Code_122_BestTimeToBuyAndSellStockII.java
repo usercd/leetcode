@@ -7,13 +7,11 @@ package dp;
 public class Code_122_BestTimeToBuyAndSellStockII {
     // 贪心
     public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
         int result = 0;
-        if (prices == null || prices.length == 0) return result;
-        for (int i=0; i<prices.length-1; i++) {
-            int diff = prices[i+1] - prices[i];
-            if (diff > 0) result += diff;
+        for (int i = 0; i < prices.length - 1; i++) {
+            result += Math.max(prices[i + 1] - prices[i], 0);
         }
-
         return result;
     }
 

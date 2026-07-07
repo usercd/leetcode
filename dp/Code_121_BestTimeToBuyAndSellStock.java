@@ -18,18 +18,13 @@ package dp;
 
 public class Code_121_BestTimeToBuyAndSellStock {
     public int maxProfit(int[] prices) {
-        if (prices == null || prices.length == 0) {
-            return 0;
+        if (prices == null || prices.length <= 1) return 0;
+        int minPrices = prices[0], maxProfit = 0;
+        for (int i=1; i<prices.length; i++) {
+            minPrices = prices[i] < minPrices ? prices[i] : minPrices;
+            maxProfit = Math.max(maxProfit, prices[i] - minPrices);
         }
-        int minPrice = prices[0];
-        int maxProfit = 0;
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] < minPrice) {
-                minPrice = prices[i];
-            } else {
-                maxProfit = Math.max(maxProfit, prices[i] - minPrice);
-            }
-        }
+
         return maxProfit;
     }
 }

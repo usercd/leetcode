@@ -75,6 +75,8 @@ public class Code_300_LongestIncreasingSubsequence {
                     right = mid;
                 }
             }
+            // 直接替换，对于相同长度的递增子序列，我们始终保留结尾最小的那个
+            // 贪心策略，更小意味着后面添加的元素有可能更多
             tails[left] = num;
             if (left == size) {
                 size++;

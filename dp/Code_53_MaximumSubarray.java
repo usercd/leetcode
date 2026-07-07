@@ -28,18 +28,7 @@ public class Code_53_MaximumSubarray {
     }
 
     // 空间优化
-    public static int maxSubArray1(int[] nums) {
-        int n = nums.length, result = nums[0];
-        int last_dp = nums[0], dp = nums[0];
-        for (int i = 1; i < n; i++) {
-            dp = Math.max(nums[i], last_dp + nums[i]);
-            result = Math.max(result, dp);
-            last_dp = dp;
-        }
-        return result;
-    }
-
-    public int maxSubArray2(int[] nums) {
+    public int maxSubArray1(int[] nums) {
         int cur = nums[0], max = nums[0];
         for (int i = 1; i < nums.length; i++) {
             cur = cur > 0 ? cur + nums[i] : nums[i];

@@ -53,9 +53,9 @@ public class Code_72_EditDistance {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     // 字符不相等，考虑三种操作：插入、删除、替换
-                    int insertOp = dp[i][j - 1] + 1;   // 插入操作
-                    int deleteOp = dp[i - 1][j] + 1;   // 删除操作
-                    int replaceOp = dp[i - 1][j - 1] + 1; // 替换操作
+                    int insertOp = dp[i][j - 1] + 1;   // 插入操作 word2的最后一个字符通过插入操作匹配，j要减一，word1的当前字符还没处理i不变
+                    int deleteOp = dp[i - 1][j] + 1;   // 删除操作 删除word1当前字符，word2不变
+                    int replaceOp = dp[i - 1][j - 1] + 1; // 替换操作 word1的第i个字符和word2的第j个字符替换保持一致，所以需要dp[i-1][j-1]
                     dp[i][j] = Math.min(insertOp, Math.min(deleteOp, replaceOp));
                 }
             }

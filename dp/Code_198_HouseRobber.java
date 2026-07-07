@@ -44,8 +44,8 @@ public class Code_198_HouseRobber {
 
     // 递推
     public int rob1(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
         int n = nums.length;
-        if (nums == null || n == 0) return 0;
         if (n == 1) return nums[0];
         // arr[i] 表示偷窃前 i-1 个房屋能获得的最大金额
         int[] arr = new int[n+2];
@@ -58,9 +58,8 @@ public class Code_198_HouseRobber {
     }
 
     public int rob2(int[] nums) {
-        // 边界条件处理
+        if (nums == null || nums.length == 0) return 0;
         int n = nums.length;
-        if (nums == null || n == 0) return 0;
         if (n == 1) return nums[0];
         
         // first 表示 dp[i-2]，second 表示 dp[i-1]
@@ -72,22 +71,6 @@ public class Code_198_HouseRobber {
             int current = Math.max(first + nums[i], second);
             
             // 滚动更新：为下一轮做准备
-            first = second;
-            second = current;
-        }
-        
-        return second;
-    }
-
-    public int rob3(int[] nums) {
-        int n = nums.length;
-        if (nums == null || n == 0) return 0;
-        if (n == 1) return nums[0];
-        
-        int first = 0, second = 0;
-        
-        for (int i = 0; i < n; i++) {
-            int current = Math.max(first + nums[i], second);
             first = second;
             second = current;
         }

@@ -22,14 +22,10 @@ package dp;
 
 public class Code_152_MaximumProductSubarray {
     public int maxProduct(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
+        if (nums == null || nums.length == 0) return 0;
         
         int n = nums.length;
-        int maxProduct = nums[0];
-        int minProduct = nums[0];
-        int result = nums[0];
+        int maxProduct = nums[0], minProduct = nums[0], result = nums[0];
         
         for (int i = 1; i < n; i++) {
             if (nums[i] < 0) {
@@ -39,11 +35,9 @@ public class Code_152_MaximumProductSubarray {
                 minProduct = temp;
             }
             
-            // 更新最大和最小乘积
             maxProduct = Math.max(nums[i], maxProduct * nums[i]);
             minProduct = Math.min(nums[i], minProduct * nums[i]);
             
-            // 更新结果
             result = Math.max(result, maxProduct);
         }
         

@@ -24,8 +24,7 @@ public class Code_215_KthLargestElementInAnArray {
     public int findKthLargest(int[] nums, int k) {
         int heapSize = nums.length;
         
-        // 1. 构建最大堆：O(n)
-        // 从最后一个非叶子节点开始，自底向上堆化
+        // 1. 构建最大堆：O(n) 从最后一个非叶子节点开始，自底向上堆化
         buildMaxHeap(nums, heapSize);
         
         // 2. 执行 k-1 次"弹出堆顶"操作：O(k log n)
