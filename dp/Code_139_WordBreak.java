@@ -17,8 +17,8 @@ import java.util.Set;
  *    即：dp[i] = dp[j] && wordSet.contains(s.substring(j, i))
  * 3. 初始状态：dp[0] = true (空字符串可以被拆分)
  * 4. 返回结果：dp[n]，其中 n 是字符串 s 的长度
- * 时间复杂度：O(n^2)
- * 空间复杂度：O(n)
+ * 时间复杂度：O(n^2)/O(ml + nl^2) ml是创建
+ * 空间复杂度：O(ml + n) m 是wordDict的长度，n是字符串s的长度，l是wordDict中元素最长长度
  */
 
 public class Code_139_WordBreak {
@@ -38,5 +38,27 @@ public class Code_139_WordBreak {
         }
 
         return dp[n];
-    }    
+    }
+
+    // 时间复杂度优化
+    public boolean wordBreak1(String s, List<String> wordDict) {
+        int maxLen = 0;
+        for (String word : wordDict) {
+            maxLen = Math.max(maxLen, word.length());
+        }
+        Set<String> words = new HashSet<>(wordDict);
+
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++) {
+            for (int j = i - 1; j >= Math.max(i - maxLen, 0); j--) {
+                if (dp[j] && words.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[n];
+    }
 }
