@@ -23,6 +23,8 @@ public class Code_377_CombinationSumIV {
         // dp[i] 表示组成目标数 i 的方法数
         int[] dp = new int[target + 1];
         dp[0] = 1; // base case: 组成目标数为 0 的方法只有一种，就是不选任何数字
+        // 完全背包求排列数和顺序有关，容量放在外层 物品放在内层
+        // 容量必须正序遍历
         // 通过动态规划计算组成目标数 1 到 target 的方法数
         for (int i = 1; i <= target; i++) {
             // 遍历 nums 中的每个数字 num，如果 num <= i，则 dp[i] += dp[i - num]

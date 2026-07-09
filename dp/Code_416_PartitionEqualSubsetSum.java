@@ -34,6 +34,8 @@ public class Code_416_PartitionEqualSubsetSum {
         dp[0] = true; // Base case: zero sum is always achievable
 
         for (int num : nums) {
+            // 01背包 每个物品只能使用一次，所以需要逆序遍历，防止重复使用
+            // 如果是完全背包则正序遍历，重复使用物品
             // 从后往前遍历，避免覆盖之前的状态
             for (int j = target; j >= num; j--) {
                 // 如果之前存在一个子集和为 j - num，那么加上 num 后就存在一个子集和为 j
