@@ -49,13 +49,12 @@ public class Code_25_ReverseNodesInKGroup {
                 kthNode = kthNode.next;
             }
             if (kthNode == null) {
-                break; // Not enough nodes to reverse
+                break;
             }
 
             ListNode groupStart = prevGroupEnd.next;
             ListNode nextGroupStart = kthNode.next;
 
-            // Reverse the group
             ListNode prev = nextGroupStart;
             ListNode curr = groupStart;
             while (curr != nextGroupStart) {
@@ -65,9 +64,8 @@ public class Code_25_ReverseNodesInKGroup {
                 curr = temp;
             }
 
-            // Connect with the previous part
             prevGroupEnd.next = kthNode;
-            prevGroupEnd = groupStart; // Move to the end of the reversed group
+            prevGroupEnd = groupStart;
         }
 
         return dummy.next;

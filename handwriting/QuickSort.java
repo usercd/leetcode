@@ -3,7 +3,6 @@ package handwriting;
 import java.util.Random;
 
 public class QuickSort {
-    // 快速排序
     private static final Random random = new Random();
 
     public static void quickSort(int[] arr) {
@@ -18,7 +17,6 @@ public class QuickSort {
             return;
         }
 
-        // 随机选择基准，防止最坏情况
         int pivotIndex = left + random.nextInt(right - left + 1);
         swap(arr, pivotIndex, right);  // 将基准放到最后
 
@@ -32,10 +30,8 @@ public class QuickSort {
                 i++;
             }
         }
-        // 把基准放到正确位置
         swap(arr, i, right);
 
-        // 递归左右两部分
         quickSort(arr, left, i - 1);
         quickSort(arr, i + 1, right);
     }
