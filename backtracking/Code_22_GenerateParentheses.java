@@ -27,7 +27,6 @@ public class Code_22_GenerateParentheses {
     }
 
     private void backtrack(List<String> result, StringBuilder current, int open, int close, int max) {
-        // open 已经使用左括号的数量 close 已经使用右括号的数量
         if (current.length() == 2 * max) {
             result.add(current.toString());
             return;

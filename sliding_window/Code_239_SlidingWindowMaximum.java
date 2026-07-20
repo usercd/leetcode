@@ -3,19 +3,8 @@ package sliding_window;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-/**
- * LeetCode 239. 滑动窗口最大值
- * 
- * 题目描述：
- * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
- * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
- * 返回滑动窗口中的最大值。
- * 解题思路：单调递减队列
- * 时间复杂度：O(n)
- * 空间复杂度：O(k)
- */
-
 public class Code_239_SlidingWindowMaximum {
+    // 时间复杂度：O(n) 空间复杂度：O(k)
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums == null || nums.length == 0 || k <= 0) return new int[0];
         int n = nums.length;

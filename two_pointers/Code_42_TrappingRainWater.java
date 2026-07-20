@@ -4,10 +4,8 @@ import java.util.Stack;
 
 /**
  * LeetCode 42. 接雨水
- * 
  * 题目描述：
  * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
- * 
  * 解题思路：每个位置能接收的雨水量取决于该位置左侧最高柱子和右侧最高柱子中的较小值与该位置柱子高度的差值。
  * 1. DP：预先计算每个位置左侧和右侧的最高柱子高度，然后遍历计算总的雨水量。
  * 2. 双指针：使用两个指针分别从数组两端向中间移动，更新左右最高柱子高度并计算雨水量。
@@ -15,9 +13,7 @@ import java.util.Stack;
  */
 
 public class Code_42_TrappingRainWater {
-
-
-    // DP 纵向逐列位置计算接雨水量
+    // DP 纵向逐列位置计算接雨水量 时间复杂度O(n) 空间复杂度O(n)
     public int trap1(int[] height) {
         int n = height.length;
         if (n == 0) return 0;
@@ -46,14 +42,15 @@ public class Code_42_TrappingRainWater {
         return waterTrapped;
     }
 
-    // 双指针法计算接雨水量
+    // 双指针法计算接雨水量 时间复杂度O(n) 空间复杂度O(1)
     public int trap2(int[] height) {
-        int left = 0, right = height.length - 1, leftMax = 0, rightMax = 0, waterTrapped = 0;
-        
+        int left = 0, right = height.length - 1;
+        int leftMax = 0, rightMax = 0, waterTrapped = 0;
+
         while (left < right) {
             leftMax = Math.max(leftMax, height[left]);
             rightMax = Math.max(rightMax, height[right]);
-            if (height[left] < height[right]) {
+            if (leftMax < rightMax) {
                 waterTrapped += leftMax - height[left];
                 left++;
             } else {
@@ -65,7 +62,6 @@ public class Code_42_TrappingRainWater {
         return waterTrapped;
     }
 
-    
 
     // 单调栈 横向逐层计算接雨水量
     public int trap3(int[] height) {

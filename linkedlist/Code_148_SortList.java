@@ -1,19 +1,5 @@
 package linkedlist;
 
-/**
- * LeetCode 148. 排序链表
- * 
- * 题目描述：
- * 给定链表的头节点 head ，对链表进行排序，并返回排序后的链表。
- * 
- * 解题思路：
- * 使用归并排序算法对链表进行排序。首先使用快慢指针找到链表的中点，
- * 然后递归地对左右两部分进行排序，最后合并两个已排序的链表。
- * 
- * 时间复杂度：O(n log n)
- * 空间复杂度：O(log n)（递归栈空间）
- */
-
 public class Code_148_SortList {
 
     class ListNode {
@@ -24,56 +10,49 @@ public class Code_148_SortList {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    // 时间复杂度：O(n log n) 空间复杂度：O(log n)（递归栈空间）
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        // Step 1: Split the list into two halves
-        ListNode mid = getMid(head);
-        ListNode left = head;
-        ListNode right = mid.next;
-        mid.next = null; // Split the list into two halves
-
-        // Step 2: Recursively sort both halves
-        left = sortList(left);
-        right = sortList(right);
-
-        // Step 3: Merge the sorted halves
-        return merge(left, right);
-    }
-
-    private ListNode getMid(ListNode head) {
+        // 快慢指针找中点
         ListNode slow = head;
-        ListNode fast = head;
+        ListNode fast = head.next;
 
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        return slow;
+
+        // 拆分链表
+        ListNode rightHead = slow.next;
+        slow.next = null;
+
+        // 递归排序左右两部分
+        ListNode left = sortList(head);
+        ListNode right = sortList(rightHead);
+
+        // 合并两个有序链表
+        return merge(left, right);
     }
 
     private ListNode merge(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
-        ListNode current = dummy;
+        ListNode cur = dummy;
 
         while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                current.next = l1;
+            if (l1.val <= l2.val) {
+                cur.next = l1;
                 l1 = l1.next;
             } else {
-                current.next = l2;
+                cur.next = l2;
                 l2 = l2.next;
             }
-            current = current.next;
+            cur = cur.next;
         }
 
-        if (l1 != null) {
-            current.next = l1;
-        } else {
-            current.next = l2;
-        }
+        cur.next = (l1 != null) ? l1 : l2;
 
         return dummy.next;
     }
@@ -97,7 +76,6 @@ public class Code_148_SortList {
     public ListNode sortListO1(ListNode head) {
         if (head == null || head.next == null) return head;
 
-        // 第一步：统计链表总长度
         int length = 0;
         ListNode node = head;
         while (node != null) {
@@ -105,8 +83,7 @@ public class Code_148_SortList {
             node = node.next;
         }
 
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
+        ListNode dummy = new ListNode(0, head);
 
         // 第二步：step 从 1 开始，每轮翻倍，共 O(log n) 轮
         for (int step = 1; step < length; step <<= 1) {

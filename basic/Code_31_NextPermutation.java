@@ -1,16 +1,6 @@
 package basic;
 
 /**
- * 31. Next Permutation
- * Medium
- *
- * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
- *
- * If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
- *
- * The replacement must be in place and use only constant extra memory.
- *
- * 解题思路:
  * 1. 从后向前找到第一个降序的位置i，即nums[i] < nums[i + 1]
  * 2. 如果找到了这样的i，再从后向前找到第一个大于nums[i]的位置j，交换nums[i]和nums[j]
  * 3. 最后将i之后的部分反转

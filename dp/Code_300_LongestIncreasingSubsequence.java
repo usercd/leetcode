@@ -7,19 +7,6 @@ package dp;
  * 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
  * 子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。
  * 例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
- * 
- * 解题思路：
- * 解法一：
- * 使用动态规划求解
- * 1. 状态定义：dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度
- * 2. 状态转移：对于每个 i，遍历 j 从 0 到 i-1，如果 nums[i] > nums[j]，则可以将 nums[i] 接在 nums[j] 后面
- *    dp[i] = max(dp[i], dp[j] + 1)
- * 3. 初始状态：每个元素至少可以组成长度为 1 的递增子序列，即 dp[i] = 1
- * 4. 返回结果：max(dp[i])，i 从 0 到 n-1
- * 
- * 时间复杂度：O(n^2)
- * 空间复杂度：O(n)
- * 
  * 解法二（进阶）：
  * 使用贪心算法结合二分查找优化到 O(n log n)
  * 1. 维护一个数组 tails，其中 tails[k] 表示长度为 k+1 的递增子序列的最小结尾元素
@@ -30,7 +17,7 @@ package dp;
  */
 
 public class Code_300_LongestIncreasingSubsequence {
-    // 解法一：动态规划 O(n^2)
+    // 解法一：动态规划 时间复杂度：O(n^2) 空间复杂度：O(n)
     public int lengthOfLIS1(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -52,7 +39,7 @@ public class Code_300_LongestIncreasingSubsequence {
         return maxLength;
     }
 
-    // 解法二：DP + 二分查找 O(n log n)
+    // 解法二：DP + 二分查找  时间复杂度：O(nlog n) 空间复杂度：O(n)
     public int lengthOfLIS2(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
