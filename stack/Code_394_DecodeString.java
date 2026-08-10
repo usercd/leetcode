@@ -30,14 +30,18 @@ public class Code_394_DecodeString {
         Stack<Integer> countStack = new Stack<>();
         Stack<String> stringStack = new Stack<>();
         StringBuilder currentString = new StringBuilder();
+
         int k = 0;
 
         for (char ch : s.toCharArray()) {
             if (Character.isDigit(ch)) {
                 k = k * 10 + (ch - '0');
             } else if (ch == '[') {
+                // 存储k
                 countStack.push(k);
+                // 暂存之前的encoded_string
                 stringStack.push(currentString.toString());
+                // 指向新的字符构造
                 currentString = new StringBuilder();
                 k = 0;
             } else if (ch == ']') {
