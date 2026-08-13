@@ -1,9 +1,6 @@
 package tree;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author CD
@@ -20,6 +17,27 @@ public class Code_145_BinaryTreePostorderTraversal {
             val = x;
         }
     }
+
+    // 根右左 翻转 左右根
+    public List<Integer> postorderTraversal0(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.offer(root);
+
+        while (!stack.isEmpty()) {
+            int size = stack.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = stack.poll();
+                if (poll.left != null) stack.offer(poll.left);
+                if (poll.right != null) stack.offer(poll.right);
+                result.add(poll.val);
+            }
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
 
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();

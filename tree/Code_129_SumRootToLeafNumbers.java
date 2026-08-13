@@ -33,13 +33,9 @@ public class Code_129_SumRootToLeafNumbers {
     }
 
     private int dfs(TreeNode node, int currentSum) {
-        if (node == null) {
-            return 0;
-        }
+        if (node == null) return 0;
         currentSum = currentSum * 10 + node.val;
-        if (node.left == null && node.right == null) {
-            return currentSum;
-        }
+        if (node.left == null && node.right == null) return currentSum;
         return dfs(node.left, currentSum) + dfs(node.right, currentSum);
     }
 }

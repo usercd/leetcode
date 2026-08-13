@@ -2,6 +2,8 @@ package tree;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 104. Maximum Depth of Binary Tree
@@ -42,9 +44,7 @@ public class Code_104_MaximumDepthofBinaryTree {
 
     // 递归 后序遍历
     public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
+        if (root == null) return 0;
         int leftDepth = maxDepth(root.left);
         int rightDepth = maxDepth(root.right);
         return Math.max(leftDepth, rightDepth) + 1;

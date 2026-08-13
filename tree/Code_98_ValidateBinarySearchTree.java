@@ -36,16 +36,10 @@ public class Code_98_ValidateBinarySearchTree {
     }
 
     private boolean validate(TreeNode node, Integer lower, Integer upper) {
-        if (node == null) {
-            return true;
-        }
+        if (node == null) return true;
         int val = node.val;
-        if (lower != null && val <= lower) {
-            return false;
-        }
-        if (upper != null && val >= upper) {
-            return false;
-        }
+        if (lower != null && val <= lower) return false;
+        if (upper != null && val >= upper) return false;
         return validate(node.left, lower, val) && validate(node.right, val, upper);
     }
 
